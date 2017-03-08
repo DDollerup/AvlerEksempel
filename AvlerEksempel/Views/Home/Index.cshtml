@@ -1,0 +1,21 @@
+﻿@model List<ProductBreederViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Avler Eksempel</h2>
+
+@foreach (ProductBreederViewModel item in Model)
+{
+    <p>
+        @item.Product.Name
+    </p>
+    foreach (Breeder breeder in item.Breeders)
+    {
+        <ul>
+            <li>
+                @breeder.Name
+            </li>
+        </ul>
+    }
+}
