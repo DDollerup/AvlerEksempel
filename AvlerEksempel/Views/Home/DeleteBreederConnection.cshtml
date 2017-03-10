@@ -1,0 +1,28 @@
+﻿@model BreederConnectionViewModel
+@{
+    ViewBag.Title = "DeleteBreederConnection";
+}
+
+<h2>Delete Connections - Breeder: @ViewBag.Breeder.Name</h2>
+<form action="/Home/DeleteBreederConnectionSubmit" method="post">
+    <input type="hidden" name="BreederID" value="@ViewBag.Breeder.ID" />
+    <table>
+        @foreach (ProductBreeder item in Model.ProductBreeders)
+        {
+            <tr>
+                <td>
+                    @Model.Products.Find(x => x.ID == item.ProductID).Name
+                </td>
+                <td>
+                    <input type="checkbox" name="productBreederIDs" value="@item.ID" />
+                </td>
+            </tr>
+        }
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Save" />
+            </td>
+        </tr>
+    </table>
+
+</form>

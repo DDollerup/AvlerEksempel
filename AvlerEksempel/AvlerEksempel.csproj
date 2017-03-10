@@ -112,6 +112,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Breeder.cs" />
+    <Compile Include="Models\BreederConnectionViewModel.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductBreeder.cs" />
     <Compile Include="Models\ProductBreederViewModel.cs" />
@@ -127,6 +128,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\Breeders.cshtml" />
+    <Content Include="Views\Home\AddBreederConnection.cshtml" />
+    <Content Include="Views\Home\DeleteBreederConnection.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

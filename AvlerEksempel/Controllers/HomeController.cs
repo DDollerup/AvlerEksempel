@@ -58,5 +58,64 @@ namespace AvlerEksempel.Controllers
 
             return all;
         }
+
+        public ActionResult Breeders()
+        {
+            List<Breeder> allBreeders = breederFac.GetAll();
+            return View(allBreeders);
+        }
+
+        public ActionResult AddBreederConnection(int id = 0)
+        {
+            ViewBag.Breeder = breederFac.Get(id);
+
+            List<Product> allProducts = productFac.GetAll();
+            List<ProductBreeder> productBreedersByBreederID = productBreederFac.GetBy("BreederID", id);
+            BreederConnectionViewModel pdvm = new BreederConnectionViewModel();
+            pdvm.Products = allProducts;
+            pdvm.ProductBreeders = productBreedersByBreederID;
+            return View(pdvm);
+        }
+
+        [HttpPost]
+        public ActionResult AddBreederConnectionSubmit(int breederID, List<int> productIDs)
+        {
+            for (int i = 0; i < productIDs.Count; i++)
+            {
+                ProductBreeder productBreederToAdd = new ProductBreeder();
+                productBreederToAdd.BreederID = breederID;
+                productBreederToAdd.ProductID = productIDs[i];
+
+                productBreederFac.Add(productBreederToAdd);
+            }
+            return RedirectToAction("Breeders");
+        }
+
+        public ActionResult DeleteBreederConnection(int id = 0)
+        {
+            ViewBag.Breeder = breederFac.Get(id);
+
+            List<Product> allProducts = productFac.GetAll();
+            List<ProductBreeder> productBreedersByBreederID = productBreederFac.GetBy("BreederID", id);
+            BreederConnectionViewModel pdvm = new BreederConnectionViewModel();
+            pdvm.Products = allProducts;
+            pdvm.ProductBreeders = productBreedersByBreederID;
+            return View(pdvm);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteBreederConnectionSubmit(int breederID, List<int> productBreederIDs)
+        {
+            for (int i = 0; i < productBreederIDs.Count; i++)
+            {
+                productBreederFac.Delete(productBreederIDs[i]);
+            }
+            return RedirectToAction("Breeders");
+        }
+
+
+
+
+
     }
 }

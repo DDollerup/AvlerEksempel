@@ -1,0 +1,35 @@
+﻿@model BreederConnectionViewModel
+@{
+    ViewBag.Title = "AddBreederConnection";
+}
+
+<h2>Breeder: @ViewBag.Breeder.Name</h2>
+<form action="/Home/AddBreederConnectionSubmit" method="post">
+    <input type="hidden" name="BreederID" value="@ViewBag.Breeder.ID" />
+    <table>
+        @foreach (Product item in Model.Products)
+        {
+            if (Model.ProductBreeders.Exists(x => x.ProductID == item.ID))
+            {
+                // Skal ikke printe muligheden ud
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        <input type="checkbox" name="ProductIDs" value="@item.ID" />
+                    </td>
+                </tr>
+            }
+        }
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Save" />
+            </td>
+        </tr>
+    </table>
+    
+</form>
